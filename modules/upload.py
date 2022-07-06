@@ -6,14 +6,14 @@ import subprocess
 SERVICES = ['anonfiles', 'catbox', 'fileio', 'filemail', 'gofile', 'megaup', 'mixdrop', 'pixeldrain', 'racaty', 'transfersh', 'uguu', 'wetransfer', 'workupload', 'zippyshare']
 
 reply_message = """
-**Name :** `{0}`
-**Host :** `{1}`
-**URL  :** {2}"""
+**• Name :** `{0}`
+**• Host :** `{1}`
+**• URL  :** {2}"""
 
 def upload(filePath: str, serviceID: int, message: Message, progressMessage: Message):
     file_name = os.path.basename(filePath)
-    print(f"Uploading `{file_name}` to {SERVICES[serviceID]}", flush=True)
-    progressMessage.edit_text(f"Uploading to {SERVICES[serviceID]} : 🐙\n`{file_name}` ")
+    print(f"Uploading ⬆️ \n• File Name : `{file_name}` \n• Selected Server : {SERVICES[serviceID]}", flush=True)
+    progressMessage.edit_text(f"Uploading ⬆️ \n• Selected Server : {SERVICES[serviceID]} \n• File Name : `{file_name}` ")
 
     subprocess.Popen(["./go-ul_linux_x64", SERVICES[serviceID], '-f', filePath, '-j', 'response.json']).wait()
 
@@ -24,5 +24,5 @@ def upload(filePath: str, serviceID: int, message: Message, progressMessage: Mes
         raise Exception(f"{response['jobs'][-1]['error_text']}")
     else:
         message.reply_text(reply_message.format(response['jobs'][-1]['filename'], SERVICES[serviceID], response['jobs'][-1]['url']), disable_web_page_preview=True, quote=True)
-        print(f"Uploaded to {SERVICES[serviceID]}", flush=True)
+        print(f"Uploaded Successfully \n• Selected Server : {SERVICES[serviceID]}", flush=True)
     return 0
