@@ -12,7 +12,7 @@ def ddlDownload(message, serviceID, progressMessage):
     print("ddlDownload", flush=True)
     ddl = URLRx.search(message.text).group(0)
     filename = os.path.basename(ddl).split("?")[0]
-    print(f"Downloading {filename}", flush=True)
+    print(f"Downloading ⬇️ \n• File Name : {filename}", flush=True)
     filePath = os.path.join("Downloads", filename)
     if not os.path.exists(filePath):
         subprocess.run(["curl", "-L", ddl, "-o", filePath])
