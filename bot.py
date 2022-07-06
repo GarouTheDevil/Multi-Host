@@ -17,8 +17,10 @@ app = Client("my_account", api_id=os.getenv('api_id'),
              api_hash=os.getenv('api_hash'), bot_token=os.getenv('bot_token'))
 
 help_message = """**Supported Upload Hosting Servers :**
+
+
 +----+-------------+---------+
-| S.No |   Host    | MaxSize |
+|    |     Host    | MaxSize |
 +====+=============+=========+
 |  1 |  anonfiles  |  20 GB  |
 +----+-------------+---------+
@@ -49,7 +51,7 @@ help_message = """**Supported Upload Hosting Servers :**
 | 14 |  zippyshare |  500 MB |
 +----+-------------+---------+
 
-**Supported links : G-Drive URL, TG File**
+**Supported links : G-Drive url, TG file, DDL**
 
 Example : /up {Gdrive URL} #S.No
 
