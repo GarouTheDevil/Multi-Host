@@ -16,9 +16,9 @@ authorized_list = json.loads(os.getenv('authorized_list'))
 app = Client("my_account", api_id=os.getenv('api_id'),
              api_hash=os.getenv('api_hash'), bot_token=os.getenv('bot_token'))
 
-help_message = """**Supported upload hosts:**`
+help_message = """**Supported Upload Hosting Servers :**
 +----+-------------+---------+
-|    |     Host    | MaxSize |
+| S.No |   Host    | MaxSize |
 +====+=============+=========+
 |  1 |  anonfiles  |  20 GB  |
 +----+-------------+---------+
@@ -47,17 +47,13 @@ help_message = """**Supported upload hosts:**`
 | 13 |  workupload |   2 GB  |
 +----+-------------+---------+
 | 14 |  zippyshare |  500 MB |
-+----+-------------+---------+`
++----+-------------+---------+
 
-**Supported links: G-Drive url, TG file, DDL**
+**Supported links : G-Drive URL, TG File**
 
-ex: Gdrive to anonfiles:
-`/up gdrive-url #1`
+Example : /up {Gdrive URL} #S.No
 
-ex: TG file to WeTransfer:
-reply to a file with `/up #12`
-
-**Made by [bunny](https://t.me/pseudoboi) 🧪**
+`/up https://drive.google.com/file #1`
 """
 if not os.path.exists('Downloads'):
     os.makedirs('Downloads')
@@ -66,7 +62,7 @@ print("Bot started", flush=True)
 @app.on_message(filters.text)
 def echo(client, message: Message):
     if not message.chat.id in authorized_list:
-        message.reply_text('**Unauthorized!**')
+        message.reply_text('**Unauthorized User You Are**')
         return
 
     if '/help' in message.text:
@@ -83,13 +79,13 @@ def echo(client, message: Message):
             else:
                 serviceID = int(os.getenv('default_host_id')) - 1
             if 'drive.google' in message.text:
-                progressMessage =  message.reply("Please wait while I download your G-Drive file...")
+                progressMessage =  message.reply("Downloading ⬇️ \n• Received Type : Gdrive")
                 gdriveDownload(message, serviceID, progressMessage)
             elif message.reply_to_message:
-                progressMessage =  message.reply("Please wait while I download your Telegram file...")
+                progressMessage =  message.reply("Downloading ⬇️ \n• Received Type : Telegram File")
                 tgDownload(message, serviceID, progressMessage)
             elif URLRx.search(message.text):
-                progressMessage =  message.reply("Please wait while I download your link...")
+                progressMessage =  message.reply("Downloading ⬇️ \n• Received Type : Link")
                 ddlDownload(message, serviceID, progressMessage)
         elif '/stats' in message.text:
             CacheSize(message)
