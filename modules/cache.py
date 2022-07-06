@@ -5,9 +5,9 @@ import subprocess
 
 
 def CacheSize(msg):
-    print("Getting cache size", flush=True)
+    print("Getting Cache Size", flush=True)
     output = subprocess.check_output(['du','-sh', 'Downloads']).split()[0].decode('utf-8')
-    msg.reply_text("Cache size: " + output)
+    msg.reply_text("Cache size : " + output)
 
 def clearCache(msg):
     print("Clearing cache", flush=True)
@@ -15,5 +15,5 @@ def clearCache(msg):
     shutil.rmtree('Downloads')
     os.makedirs('Downloads')
     #subprocess.call(['rm','-rf','Downloads/*'])
-    msg.reply_text("Cache cleared")
+    msg.reply_text("Cache Cleared")
     CacheSize(msg)
