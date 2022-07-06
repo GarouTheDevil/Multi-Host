@@ -10,7 +10,7 @@ def CacheSize(msg):
     msg.reply_text("Cache size : " + output)
 
 def clearCache(msg):
-    print("Clearing cache", flush=True)
+    print("Clearing Cache", flush=True)
     #delete all files in Downloads folder using linux command
     shutil.rmtree('Downloads')
     os.makedirs('Downloads')
