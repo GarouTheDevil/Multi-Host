@@ -5,13 +5,13 @@ from modules.upload import upload
 def progress(current, total, progressMessage: Message, fileName: str):
     if int(current * 100 / total) % 10 == 0:
         try:
-            progressMessage.edit_text(f"Downloading: `{fileName}`\nProgress: `{current * 100 / total:.1f}%`")
+            progressMessage.edit_text(f"Downloading ⬇️ \n• File Name : `{fileName}`\n• Progress : `{current * 100 / total:.1f}%`")
         except:
             pass
         print(f"{current * 100 / total:.1f}%", flush=True)
 
 def tgDownload(msg: Message, serviceID: int, progressMessage: Message):
-    print("processing TG", flush=True)
+    print("Processing TG", flush=True)
     message = msg.reply_to_message
     #print(message)
     mediaType = message.media.value
@@ -26,8 +26,8 @@ def tgDownload(msg: Message, serviceID: int, progressMessage: Message):
         mime = message.document.mime_type
         print(mime)
     else:
-        print("This media type is not supported", flush=True)
-        raise Exception("This media type is not supported")
+        print("This Media Type Is Not Supported", flush=True)
+        raise Exception("This Media Type Is Not Supported")
     
     fileName = media.file_name
     size = media.file_size
