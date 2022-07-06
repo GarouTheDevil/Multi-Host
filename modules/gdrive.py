@@ -35,9 +35,9 @@ def gdriveDownload(message: Message, serviceID: int, progressMessage: Message):
         done = False
         while done is False:
             status, done = downloader.next_chunk()
-            progressMessage.edit_text(f"**{metadata['name']}**\n`Downloading... {int(status.progress() * 100)}%`")
+            progressMessage.edit_text(f"Downloading ⬇️ \n**• File Name : {metadata['name']}** \n• Process : {int(status.progress() * 100)}%`")
             print(f"Download %d%%." % int(status.progress() * 100))
-        progressMessage.edit_text(f"Downloaded **{metadata['name']}**")
+        progressMessage.edit_text(f"Downloaded Successfully \n• File Name : **{metadata['name']}**")
         fh.close()
         print("Downloaded", flush=True)
     upload(download_path, serviceID, message, progressMessage)
